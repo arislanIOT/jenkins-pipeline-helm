@@ -4,6 +4,7 @@ pipeline {
         stage("clone") {
             steps {
                 echo "cloning the repo"
+                git 'https://github.com/arislanIOT/get-started-node.git'
             }
         }
         stage("build") {
@@ -15,9 +16,7 @@ pipeline {
             steps {
                 echo "Push the Docker image to Docker Hub"
             }
-            steps {
-                echo "Push helm dir to the Helm Hub"
-            }
+            
         }
     }
 } 
