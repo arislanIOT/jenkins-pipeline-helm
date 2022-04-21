@@ -10,7 +10,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "Building the node app image"
-                sh "whoami"
+                sh "buildah bud -t my-node ."
             }
         }
         stage("push") {
