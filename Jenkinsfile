@@ -10,7 +10,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "Building the node app image"
-                sh "docker build -t ."
+                sh "docker build --tag mynode ."
             }
         }
         stage("push") {
