@@ -10,8 +10,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "Building the node app image"
-                sh "podman version"
-                sh "podman build -t my_nodejs ."
+                sh "whoami"
             }
         }
         stage("push") {
