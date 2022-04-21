@@ -10,7 +10,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "Building the node app image"
-                sh "buildah bud -t my-node ."
+                sh "docker build -t ."
             }
         }
         stage("push") {
