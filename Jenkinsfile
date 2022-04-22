@@ -13,7 +13,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "Building the node app image"
-                sh "docker build  --tag jenkins-pipeline-helm:${DOCKER_TAG} Dockerfile"
+                sh "docker build . --tag jenkins-pipeline-helm:${DOCKER_TAG}"
             }
         }
         stage("push") {
