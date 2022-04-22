@@ -28,7 +28,7 @@ pipeline {
             }
             
         }
-        stage("Updating helm value"){
+        stage("Updating helm value") {
             steps{
                 echo "Updating lateset image to values yaml"
                 sh "chmod +x tagupdate.sh"
