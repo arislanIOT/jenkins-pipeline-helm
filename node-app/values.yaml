@@ -9,3 +9,7 @@ image:
 
 application:
   name: color-nodejs
+
+service:
+  type: Loadbalancer
+  port: 8080
