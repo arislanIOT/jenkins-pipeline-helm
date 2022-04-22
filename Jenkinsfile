@@ -52,7 +52,7 @@ pipeline {
             steps {
                 echo "Deploying to the EKS cluster"
                 sh "aws ecr get-login-password --region us-west-2 | helm registry login --username AWS --password-stdin 996166566464.dkr.ecr.us-west-2.amazonaws.com"
-                sh "helm install --name my-eks-app node-app/"
+                sh "helm install my-eks-app node-app/"
             }
         }
     }
@@ -63,3 +63,8 @@ def getDockerTag() {
     def tag = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
 }
+
+
+// withCredentials([usernamePassword(credentialsId: 'aws-api-key', passwordVariable: 'SECRET_KEY', usernameVariable: 'ACCESS_KEY')]) {
+//     // some block
+// }
