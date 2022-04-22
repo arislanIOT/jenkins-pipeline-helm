@@ -13,7 +13,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "Building the node app image"
-                sh "docker build . --tag mynode:${DOCKER_TAG}"
+                sh "docker build  --tag mynode:${DOCKER_TAG} Dockerfile"
             }
         }
         stage("push") {
