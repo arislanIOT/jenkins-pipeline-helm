@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         DOCKER_TAG = getDockerTag()
-        MY_REPO = arislankareem/jenkins-pipeline-helm
     }
     stages {
         stage("clone") {
