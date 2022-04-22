@@ -10,7 +10,7 @@ pipeline {
         //         git 'https://github.com/arislanIOT/jenkins-pipeline-helm.git'
         //     }
         // }
-        stage("build") {
+        stage("Container build") {
             steps {
                 echo "Building the node app image"
                 sh "docker build . --tag arislankareem/jenkins-pipeline-helm:${DOCKER_TAG}"
@@ -28,13 +28,18 @@ pipeline {
             }
             
         }
-        stage("Updating helm value") {
+        stage("Updating image tag") {
             steps{
                 echo "Updating lateset image to values yaml"
-                sh "pwd"
                 sh "chmod +x tagupdate.sh"
                 sh "./tagupdate.sh ${DOCKER_TAG}"
 
+            }
+        }
+        stage("Packaging") {
+            steps {
+                echo "Packaging helm chart"
+                sh "helm package node-app"
             }
         }
     }
