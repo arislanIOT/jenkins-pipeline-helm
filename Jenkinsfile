@@ -4,12 +4,12 @@ pipeline {
         DOCKER_TAG = getDockerTag()
     }
     stages {
-        stage("clone") {
-            steps {
-                echo "cloning the repo"
-                git 'https://github.com/arislanIOT/jenkins-pipeline-helm.git'
-            }
-        }
+        // stage("clone") {
+        //     steps {
+        //         echo "cloning the repo"
+        //         git 'https://github.com/arislanIOT/jenkins-pipeline-helm.git'
+        //     }
+        // }
         stage("build") {
             steps {
                 echo "Building the node app image"
