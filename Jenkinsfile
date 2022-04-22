@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_TAG = getDockerTag()
+        MY_REPO = arislankareem/jenkins-pipeline-helm
     }
     stages {
         stage("clone") {
@@ -28,9 +29,12 @@ pipeline {
             }
             
         }
-        stage("k8 deploy"){
+        stage("Updating helm value"){
             steps{
-                echo "helm install <chartname>"
+                echo "Updating lateset image to values yaml"
+                sh "chmod +x tagupdate.sh"
+                sh "./tagupdate.sh ${DOCKER_TAG}"
+
             }
         }
     }

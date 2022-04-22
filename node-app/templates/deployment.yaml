@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: color-nodejs
+  name: {{.Values.application.name}}
+spec:
+  replicas: {{.Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: color-nodejs
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: color-nodejs
+    spec:
+      containers:
+      - image: {{.Values.image.repository}}
+        name: api
+        imagePullPolicy: {{.Values.image.pullPolicy}}
+        resources: {}
+        ports:
+          - containerPort: 8080 
+status: {}
