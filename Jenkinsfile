@@ -42,6 +42,19 @@ pipeline {
                 sh "helm package node-app"
             }
         }
+        stage("helm package push") {
+            steps {
+                echo "pushing the hel pakage to ECR"
+                sh "helm push node-app-0.1.0.tgz oci://996166566464.dkr.ecr.us-west-2.amazonaws.com/"
+            }
+        }
+        stage("Deploy") {
+            steps {
+                echo "Deploying to the EKS cluster"
+                sh "aws ecr get-login-password --region us-west-2 | helm registry login --username AWS --password-stdin 996166566464.dkr.ecr.us-west-2.amazonaws.com"
+                sh "helm install --name my-eks-app node-app/"
+            }
+        }
     }
 } 
 
