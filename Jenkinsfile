@@ -13,7 +13,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "Building the node app image"
-                sh "docker build  --tag mynode:${DOCKER_TAG} Dockerfile"
+                sh "docker build  --tag jenkins-pipeline-helm:${DOCKER_TAG} Dockerfile"
             }
         }
         stage("push") {
@@ -21,7 +21,7 @@ pipeline {
                 echo "Push the Docker image to Docker Hub"
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPwd', usernameVariable: 'USERNAME')]) {
                     sh "docker login -u ${USERNAME} -p ${dockerHubPwd}"
-                    sh "docker push mynode:${DOCKER_TAG}"
+                    sh "docker push arislankareem/jenkins-pipeline-helm:${DOCKER_TAG}"
 
                 }
                 
