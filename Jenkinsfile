@@ -52,6 +52,7 @@ pipeline {
             steps {
                 echo "Deploying to the EKS cluster"
                 sh "aws ecr get-login-password --region us-west-2 | helm registry login --username AWS --password-stdin 996166566464.dkr.ecr.us-west-2.amazonaws.com"
+                sh "helm uninstall my-eks-app --namespace default"
                 sh "helm install my-eks-app node-app/"
             }
         }
