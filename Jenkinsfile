@@ -7,7 +7,7 @@ pipeline {
         stage("clone") {
             steps {
                 echo "cloning the repo"
-                git 'https://github.com/arislanIOT/get-started-node.git'
+                git 'https://github.com/arislanIOT/jenkins-pipeline-helm.git'
             }
         }
         stage("build") {
