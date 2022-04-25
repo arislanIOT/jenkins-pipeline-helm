@@ -50,14 +50,15 @@ pipeline {
         // }
         stage("Deploy") {
             steps {
-                echo "Deploying to the EKS cluster"
                 echo "Sign in to EKS"
                 withCredentials([usernamePassword(credentialsId: 'aws-api-key', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                     sh "aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}"
                     sh "aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}"
                     sh "aws configure set region us-west-2"
                 }
+                echo "Deploying app to EKS"
                 sh "aws ecr get-login-password --region us-west-2 | helm registry login --username AWS --password-stdin 996166566464.dkr.ecr.us-west-2.amazonaws.com"
+                sh "kubectl delete ns nodejsapp"
                 sh "kubectl create ns nodejsapp"
                 // sh "helm uninstall my-eks-app --namespace nodejsapp"
                 sh "sleep 5"
