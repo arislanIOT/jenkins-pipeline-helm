@@ -42,12 +42,12 @@ pipeline {
                 sh "helm package node-app"
             }
         }
-        stage("helm package push") {
-            steps {
-                echo "pushing the hel pakage to ECR"
-                sh "helm push node-app-0.1.0.tgz oci://996166566464.dkr.ecr.us-west-2.amazonaws.com/"
-            }
-        }
+        // stage("helm package push") {
+        //     steps {
+        //         echo "pushing the hel pakage to ECR"
+        //         sh "helm push node-app-0.1.0.tgz oci://996166566464.dkr.ecr.us-west-2.amazonaws.com/"
+        //     }
+        // }
         stage("Deploy") {
             steps {
                 echo "Deploying to the EKS cluster"
