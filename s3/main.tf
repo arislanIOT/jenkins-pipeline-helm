@@ -1,11 +1,13 @@
-provider "aws" {
-    access_key = "${var.aws_access_key}"
-    secret_key = "${var.aws_secret_key}"
-    region = "${var.region}"
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.11.0"
+    }
+  }
 }
 
-module "s3" {
-    source = "repo/helm/chart"
-    #bucket name should be unique
-    bucket_name = "helm-chart"       
+provider "aws" {
+
+ region = "us-west-2"
 }
