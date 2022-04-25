@@ -62,7 +62,7 @@ pipeline {
                 // sh "helm uninstall my-eks-app --namespace nodejsapp"
                 sh "sleep 5"
 
-                sh "helm upgrade --install --atomic --timeout 600 --namespace nodejsapp my-eks-app node-app/"
+                sh "helm upgrade --install --atomic --timeout 600s --namespace nodejsapp my-eks-app node-app/"
             }
         }
     }
